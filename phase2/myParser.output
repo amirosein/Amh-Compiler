@@ -1,0 +1,1878 @@
+Grammar
+
+    0 $accept: program $end
+
+    1 program: PROGRAM SHENASE declarations_list list_ravie MAIN block
+
+    2 declarations_list: declarations
+    3                  | declarations_list declarations
+
+    4 declarations: taeen_type declarator_list
+
+    5 taeen_type: INT
+    6           | FLOAT
+    7           | CHAR
+    8           | BOOLEAN
+
+    9 declarator_list: declarator
+   10                | declarator_list COMMA declarator
+
+   11 declarator: dec
+   12           | dec ASSIGN meghdar_avalie
+
+   13 dec: SHENASE
+   14    | SHENASE BRACKET_BAZ range BRACKET_BASTE
+   15    | SHENASE BRACKET_BAZ ADADSABET BRACKET_BASTE
+
+   16 range: SHENASE TA SHENASE
+   17      | ADADSABET TA ADADSABET
+   18      | ebarat_riazi TA ebarat_riazi
+
+   19 meghdar_avalie: ebarat_sabet
+   20               | AKOLAD_BAZ list_meghdar_avalie AKOLAD_BASTE
+
+   21 list_meghdar_avalie: ebarat_sabet COMMA list_meghdar_avalie
+   22                    | ebarat_sabet
+
+   23 list_ravie: list_ravie ravie
+   24           | %empty
+
+   25 ravie: RAVIE SHENASE parameters AKOLAD_BAZ declarations_list block AKOLAD_BASTE SEMICOLON
+
+   26 parameters: PARANTEZ_BAZ declarations_list PARANTEZ_BASTE
+
+   27 block: AKOLAD_BAZ statement_list AKOLAD_BASTE
+
+   28 statement_list: statement SEMICOLON
+   29               | statement_list statement SEMICOLON
+
+   30 statement: SHENASE ASSIGN ebarat
+   31          | AGAR ebarat_bool ANGAH statement
+   32          | AGAR ebarat_bool ANGAH statement VAGARNA statement
+   33          | DO statement WHILE ebarat_bool
+   34          | FOR SHENASE ASSIGN counter DO statement
+   35          | GOZINESH ebarat onsor_mored default END
+   36          | SHENASE PARANTEZ_BAZ arguments_list PARANTEZ_BASTE
+   37          | SHENASE BRACKET_BAZ ebarat BRACKET_BASTE ASSIGN ebarat
+   38          | BAZGASHT ebarat
+   39          | EXIT WHEN ebarat_bool
+   40          | block
+   41          | %empty
+
+   42 arguments_list: multi_arguments
+   43               | %empty
+
+   44 multi_arguments: multi_arguments COMMA ebarat
+   45                | ebarat
+
+   46 counter: ADADSABET UPTO ADADSABET
+   47        | ADADSABET DOWNTO ADADSABET
+
+   48 onsor_mored: MORED ADADSABET COLON block
+   49            | onsor_mored MORED ADADSABET COLON block
+
+   50 default: DEFAULT COLON block
+   51        | %empty
+
+   52 ebarat: ebarat_sabet
+   53       | ebarat_bool
+   54       | ebarat_riazi
+   55       | SHENASE
+   56       | SHENASE BRACKET_BAZ ebarat BRACKET_BASTE
+   57       | SHENASE PARANTEZ_BAZ arguments_list PARANTEZ_BASTE
+   58       | PARANTEZ_BAZ ebarat PARANTEZ_BASTE
+
+   59 ebarat_sabet: ADADSABET
+   60             | REALCONST
+   61             | HARF
+   62             | BOOLSABET
+
+   63 ebarat_bool: zojmoratab VA
+   64            | zojmoratab YA
+   65            | zojmoratab VA_ANGAH
+   66            | zojmoratab YA_VAGARNA
+   67            | zojmoratab KUCHIKTAR
+   68            | zojmoratab KUCHIKTAR_MOSAVI
+   69            | zojmoratab BOZORGTAR
+   70            | zojmoratab BOZORGTAR_MOSAVI
+   71            | zojmoratab MOSAVI
+   72            | zojmoratab NA_MOSAVI
+   73            | ebarat NAGHIZ
+
+   74 ebarat_riazi: zojmoratab PLUS
+   75             | zojmoratab MINUS
+   76             | zojmoratab MULTIPLICATION
+   77             | zojmoratab DIVISION
+   78             | zojmoratab MOD
+   79             | MINUS ebarat
+
+   80 zojmoratab: PARANTEZ_BAZ ebarat COMMA ebarat PARANTEZ_BASTE
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+ASSIGN (258) 12 30 34 37
+SHENASE (259) 1 13 14 15 16 25 30 34 36 37 55 56 57
+AKOLAD_BAZ (260) 20 25 27
+AKOLAD_BASTE (261) 20 25 27
+PARANTEZ_BAZ (262) 26 36 57 58 80
+PARANTEZ_BASTE (263) 26 36 57 58 80
+BRACKET_BAZ (264) 14 15 37 56
+BRACKET_BASTE (265) 14 15 37 56
+COLON (266) 48 49 50
+SEMICOLON (267) 25 28 29
+COMMA (268) 10 21 44 80
+INT (269) 5
+FLOAT (270) 6
+CHAR (271) 7
+BOOLEAN (272) 8
+RAVIE (273) 25
+AGAR (274) 31 32
+ANGAH (275) 31 32
+VAGARNA (276) 32
+VA_ANGAH (277) 65
+YA_VAGARNA (278) 66
+DO (279) 33 34
+WHILE (280) 33
+FOR (281) 34
+GOZINESH (282) 35
+END (283) 35
+BAZGASHT (284) 38
+EXIT (285) 39
+WHEN (286) 39
+UPTO (287) 46
+DOWNTO (288) 47
+MORED (289) 48 49
+VA (290) 63
+YA (291) 64
+NAGHIZ (292) 73
+MOSAVI (293) 71
+NA_MOSAVI (294) 72
+KUCHIKTAR (295) 67
+KUCHIKTAR_MOSAVI (296) 68
+BOZORGTAR (297) 69
+BOZORGTAR_MOSAVI (298) 70
+PLUS (299) 74
+MINUS (300) 75 79
+MULTIPLICATION (301) 76
+DIVISION (302) 77
+MOD (303) 78
+TA (304) 16 17 18
+REALCONST (305) 60
+ADADSABET (306) 15 17 46 47 48 49 59
+HARF (307) 61
+BOOLSABET (308) 62
+PROGRAM (309) 1
+MAIN (310) 1
+DEFAULT (311) 50
+VAGARNA_1 (312)
+
+
+Nonterminals, with rules where they appear
+
+$accept (58)
+    on left: 0
+program (59)
+    on left: 1, on right: 0
+declarations_list (60)
+    on left: 2 3, on right: 1 3 25 26
+declarations (61)
+    on left: 4, on right: 2 3
+taeen_type (62)
+    on left: 5 6 7 8, on right: 4
+declarator_list (63)
+    on left: 9 10, on right: 4 10
+declarator (64)
+    on left: 11 12, on right: 9 10
+dec (65)
+    on left: 13 14 15, on right: 11 12
+range (66)
+    on left: 16 17 18, on right: 14
+meghdar_avalie (67)
+    on left: 19 20, on right: 12
+list_meghdar_avalie (68)
+    on left: 21 22, on right: 20 21
+list_ravie (69)
+    on left: 23 24, on right: 1 23
+ravie (70)
+    on left: 25, on right: 23
+parameters (71)
+    on left: 26, on right: 25
+block (72)
+    on left: 27, on right: 1 25 40 48 49 50
+statement_list (73)
+    on left: 28 29, on right: 27 29
+statement (74)
+    on left: 30 31 32 33 34 35 36 37 38 39 40 41, on right: 28 29 31
+    32 33 34
+arguments_list (75)
+    on left: 42 43, on right: 36 57
+multi_arguments (76)
+    on left: 44 45, on right: 42 44
+counter (77)
+    on left: 46 47, on right: 34
+onsor_mored (78)
+    on left: 48 49, on right: 35 49
+default (79)
+    on left: 50 51, on right: 35
+ebarat (80)
+    on left: 52 53 54 55 56 57 58, on right: 30 35 37 38 44 45 56 58
+    73 79 80
+ebarat_sabet (81)
+    on left: 59 60 61 62, on right: 19 21 22 52
+ebarat_bool (82)
+    on left: 63 64 65 66 67 68 69 70 71 72 73, on right: 31 32 33 39
+    53
+ebarat_riazi (83)
+    on left: 74 75 76 77 78 79, on right: 18 54
+zojmoratab (84)
+    on left: 80, on right: 63 64 65 66 67 68 69 70 71 72 74 75 76 77
+    78
+
+
+State 0
+
+    0 $accept: . program $end
+
+    PROGRAM  shift, and go to state 1
+
+    program  go to state 2
+
+
+State 1
+
+    1 program: PROGRAM . SHENASE declarations_list list_ravie MAIN block
+
+    SHENASE  shift, and go to state 3
+
+
+State 2
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 4
+
+
+State 3
+
+    1 program: PROGRAM SHENASE . declarations_list list_ravie MAIN block
+
+    INT      shift, and go to state 5
+    FLOAT    shift, and go to state 6
+    CHAR     shift, and go to state 7
+    BOOLEAN  shift, and go to state 8
+
+    declarations_list  go to state 9
+    declarations       go to state 10
+    taeen_type         go to state 11
+
+
+State 4
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+State 5
+
+    5 taeen_type: INT .
+
+    $default  reduce using rule 5 (taeen_type)
+
+
+State 6
+
+    6 taeen_type: FLOAT .
+
+    $default  reduce using rule 6 (taeen_type)
+
+
+State 7
+
+    7 taeen_type: CHAR .
+
+    $default  reduce using rule 7 (taeen_type)
+
+
+State 8
+
+    8 taeen_type: BOOLEAN .
+
+    $default  reduce using rule 8 (taeen_type)
+
+
+State 9
+
+    1 program: PROGRAM SHENASE declarations_list . list_ravie MAIN block
+    3 declarations_list: declarations_list . declarations
+
+    INT      shift, and go to state 5
+    FLOAT    shift, and go to state 6
+    CHAR     shift, and go to state 7
+    BOOLEAN  shift, and go to state 8
+
+    $default  reduce using rule 24 (list_ravie)
+
+    declarations  go to state 12
+    taeen_type    go to state 11
+    list_ravie    go to state 13
+
+
+State 10
+
+    2 declarations_list: declarations .
+
+    $default  reduce using rule 2 (declarations_list)
+
+
+State 11
+
+    4 declarations: taeen_type . declarator_list
+
+    SHENASE  shift, and go to state 14
+
+    declarator_list  go to state 15
+    declarator       go to state 16
+    dec              go to state 17
+
+
+State 12
+
+    3 declarations_list: declarations_list declarations .
+
+    $default  reduce using rule 3 (declarations_list)
+
+
+State 13
+
+    1 program: PROGRAM SHENASE declarations_list list_ravie . MAIN block
+   23 list_ravie: list_ravie . ravie
+
+    RAVIE  shift, and go to state 18
+    MAIN   shift, and go to state 19
+
+    ravie  go to state 20
+
+
+State 14
+
+   13 dec: SHENASE .
+   14    | SHENASE . BRACKET_BAZ range BRACKET_BASTE
+   15    | SHENASE . BRACKET_BAZ ADADSABET BRACKET_BASTE
+
+    BRACKET_BAZ  shift, and go to state 21
+
+    $default  reduce using rule 13 (dec)
+
+
+State 15
+
+    4 declarations: taeen_type declarator_list .
+   10 declarator_list: declarator_list . COMMA declarator
+
+    COMMA  shift, and go to state 22
+
+    $default  reduce using rule 4 (declarations)
+
+
+State 16
+
+    9 declarator_list: declarator .
+
+    $default  reduce using rule 9 (declarator_list)
+
+
+State 17
+
+   11 declarator: dec .
+   12           | dec . ASSIGN meghdar_avalie
+
+    ASSIGN  shift, and go to state 23
+
+    $default  reduce using rule 11 (declarator)
+
+
+State 18
+
+   25 ravie: RAVIE . SHENASE parameters AKOLAD_BAZ declarations_list block AKOLAD_BASTE SEMICOLON
+
+    SHENASE  shift, and go to state 24
+
+
+State 19
+
+    1 program: PROGRAM SHENASE declarations_list list_ravie MAIN . block
+
+    AKOLAD_BAZ  shift, and go to state 25
+
+    block  go to state 26
+
+
+State 20
+
+   23 list_ravie: list_ravie ravie .
+
+    $default  reduce using rule 23 (list_ravie)
+
+
+State 21
+
+   14 dec: SHENASE BRACKET_BAZ . range BRACKET_BASTE
+   15    | SHENASE BRACKET_BAZ . ADADSABET BRACKET_BASTE
+
+    SHENASE       shift, and go to state 27
+    PARANTEZ_BAZ  shift, and go to state 28
+    MINUS         shift, and go to state 29
+    ADADSABET     shift, and go to state 30
+
+    range         go to state 31
+    ebarat_riazi  go to state 32
+    zojmoratab    go to state 33
+
+
+State 22
+
+   10 declarator_list: declarator_list COMMA . declarator
+
+    SHENASE  shift, and go to state 14
+
+    declarator  go to state 34
+    dec         go to state 17
+
+
+State 23
+
+   12 declarator: dec ASSIGN . meghdar_avalie
+
+    AKOLAD_BAZ  shift, and go to state 35
+    REALCONST   shift, and go to state 36
+    ADADSABET   shift, and go to state 37
+    HARF        shift, and go to state 38
+    BOOLSABET   shift, and go to state 39
+
+    meghdar_avalie  go to state 40
+    ebarat_sabet    go to state 41
+
+
+State 24
+
+   25 ravie: RAVIE SHENASE . parameters AKOLAD_BAZ declarations_list block AKOLAD_BASTE SEMICOLON
+
+    PARANTEZ_BAZ  shift, and go to state 42
+
+    parameters  go to state 43
+
+
+State 25
+
+   27 block: AKOLAD_BAZ . statement_list AKOLAD_BASTE
+
+    SHENASE     shift, and go to state 44
+    AKOLAD_BAZ  shift, and go to state 25
+    AGAR        shift, and go to state 45
+    DO          shift, and go to state 46
+    FOR         shift, and go to state 47
+    GOZINESH    shift, and go to state 48
+    BAZGASHT    shift, and go to state 49
+    EXIT        shift, and go to state 50
+
+    $default  reduce using rule 41 (statement)
+
+    block           go to state 51
+    statement_list  go to state 52
+    statement       go to state 53
+
+
+State 26
+
+    1 program: PROGRAM SHENASE declarations_list list_ravie MAIN block .
+
+    $default  reduce using rule 1 (program)
+
+
+State 27
+
+   16 range: SHENASE . TA SHENASE
+
+    TA  shift, and go to state 54
+
+
+State 28
+
+   80 zojmoratab: PARANTEZ_BAZ . ebarat COMMA ebarat PARANTEZ_BASTE
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 57
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 59
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 29
+
+   79 ebarat_riazi: MINUS . ebarat
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 62
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 59
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 30
+
+   15 dec: SHENASE BRACKET_BAZ ADADSABET . BRACKET_BASTE
+   17 range: ADADSABET . TA ADADSABET
+
+    BRACKET_BASTE  shift, and go to state 63
+    TA             shift, and go to state 64
+
+
+State 31
+
+   14 dec: SHENASE BRACKET_BAZ range . BRACKET_BASTE
+
+    BRACKET_BASTE  shift, and go to state 65
+
+
+State 32
+
+   18 range: ebarat_riazi . TA ebarat_riazi
+
+    TA  shift, and go to state 66
+
+
+State 33
+
+   74 ebarat_riazi: zojmoratab . PLUS
+   75             | zojmoratab . MINUS
+   76             | zojmoratab . MULTIPLICATION
+   77             | zojmoratab . DIVISION
+   78             | zojmoratab . MOD
+
+    PLUS            shift, and go to state 67
+    MINUS           shift, and go to state 68
+    MULTIPLICATION  shift, and go to state 69
+    DIVISION        shift, and go to state 70
+    MOD             shift, and go to state 71
+
+
+State 34
+
+   10 declarator_list: declarator_list COMMA declarator .
+
+    $default  reduce using rule 10 (declarator_list)
+
+
+State 35
+
+   20 meghdar_avalie: AKOLAD_BAZ . list_meghdar_avalie AKOLAD_BASTE
+
+    REALCONST  shift, and go to state 36
+    ADADSABET  shift, and go to state 37
+    HARF       shift, and go to state 38
+    BOOLSABET  shift, and go to state 39
+
+    list_meghdar_avalie  go to state 72
+    ebarat_sabet         go to state 73
+
+
+State 36
+
+   60 ebarat_sabet: REALCONST .
+
+    $default  reduce using rule 60 (ebarat_sabet)
+
+
+State 37
+
+   59 ebarat_sabet: ADADSABET .
+
+    $default  reduce using rule 59 (ebarat_sabet)
+
+
+State 38
+
+   61 ebarat_sabet: HARF .
+
+    $default  reduce using rule 61 (ebarat_sabet)
+
+
+State 39
+
+   62 ebarat_sabet: BOOLSABET .
+
+    $default  reduce using rule 62 (ebarat_sabet)
+
+
+State 40
+
+   12 declarator: dec ASSIGN meghdar_avalie .
+
+    $default  reduce using rule 12 (declarator)
+
+
+State 41
+
+   19 meghdar_avalie: ebarat_sabet .
+
+    $default  reduce using rule 19 (meghdar_avalie)
+
+
+State 42
+
+   26 parameters: PARANTEZ_BAZ . declarations_list PARANTEZ_BASTE
+
+    INT      shift, and go to state 5
+    FLOAT    shift, and go to state 6
+    CHAR     shift, and go to state 7
+    BOOLEAN  shift, and go to state 8
+
+    declarations_list  go to state 74
+    declarations       go to state 10
+    taeen_type         go to state 11
+
+
+State 43
+
+   25 ravie: RAVIE SHENASE parameters . AKOLAD_BAZ declarations_list block AKOLAD_BASTE SEMICOLON
+
+    AKOLAD_BAZ  shift, and go to state 75
+
+
+State 44
+
+   30 statement: SHENASE . ASSIGN ebarat
+   36          | SHENASE . PARANTEZ_BAZ arguments_list PARANTEZ_BASTE
+   37          | SHENASE . BRACKET_BAZ ebarat BRACKET_BASTE ASSIGN ebarat
+
+    ASSIGN        shift, and go to state 76
+    PARANTEZ_BAZ  shift, and go to state 77
+    BRACKET_BAZ   shift, and go to state 78
+
+
+State 45
+
+   31 statement: AGAR . ebarat_bool ANGAH statement
+   32          | AGAR . ebarat_bool ANGAH statement VAGARNA statement
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 79
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 80
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 46
+
+   33 statement: DO . statement WHILE ebarat_bool
+
+    SHENASE     shift, and go to state 44
+    AKOLAD_BAZ  shift, and go to state 25
+    AGAR        shift, and go to state 45
+    DO          shift, and go to state 46
+    FOR         shift, and go to state 47
+    GOZINESH    shift, and go to state 48
+    BAZGASHT    shift, and go to state 49
+    EXIT        shift, and go to state 50
+
+    $default  reduce using rule 41 (statement)
+
+    block      go to state 51
+    statement  go to state 81
+
+
+State 47
+
+   34 statement: FOR . SHENASE ASSIGN counter DO statement
+
+    SHENASE  shift, and go to state 82
+
+
+State 48
+
+   35 statement: GOZINESH . ebarat onsor_mored default END
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 83
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 59
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 49
+
+   38 statement: BAZGASHT . ebarat
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 84
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 59
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 50
+
+   39 statement: EXIT . WHEN ebarat_bool
+
+    WHEN  shift, and go to state 85
+
+
+State 51
+
+   40 statement: block .
+
+    $default  reduce using rule 40 (statement)
+
+
+State 52
+
+   27 block: AKOLAD_BAZ statement_list . AKOLAD_BASTE
+   29 statement_list: statement_list . statement SEMICOLON
+
+    SHENASE       shift, and go to state 44
+    AKOLAD_BAZ    shift, and go to state 25
+    AKOLAD_BASTE  shift, and go to state 86
+    AGAR          shift, and go to state 45
+    DO            shift, and go to state 46
+    FOR           shift, and go to state 47
+    GOZINESH      shift, and go to state 48
+    BAZGASHT      shift, and go to state 49
+    EXIT          shift, and go to state 50
+
+    $default  reduce using rule 41 (statement)
+
+    block      go to state 51
+    statement  go to state 87
+
+
+State 53
+
+   28 statement_list: statement . SEMICOLON
+
+    SEMICOLON  shift, and go to state 88
+
+
+State 54
+
+   16 range: SHENASE TA . SHENASE
+
+    SHENASE  shift, and go to state 89
+
+
+State 55
+
+   55 ebarat: SHENASE .
+   56       | SHENASE . BRACKET_BAZ ebarat BRACKET_BASTE
+   57       | SHENASE . PARANTEZ_BAZ arguments_list PARANTEZ_BASTE
+
+    PARANTEZ_BAZ  shift, and go to state 90
+    BRACKET_BAZ   shift, and go to state 91
+
+    $default  reduce using rule 55 (ebarat)
+
+
+State 56
+
+   58 ebarat: PARANTEZ_BAZ . ebarat PARANTEZ_BASTE
+   80 zojmoratab: PARANTEZ_BAZ . ebarat COMMA ebarat PARANTEZ_BASTE
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 92
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 59
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 57
+
+   73 ebarat_bool: ebarat . NAGHIZ
+   80 zojmoratab: PARANTEZ_BAZ ebarat . COMMA ebarat PARANTEZ_BASTE
+
+    COMMA   shift, and go to state 93
+    NAGHIZ  shift, and go to state 94
+
+
+State 58
+
+   52 ebarat: ebarat_sabet .
+
+    $default  reduce using rule 52 (ebarat)
+
+
+State 59
+
+   53 ebarat: ebarat_bool .
+
+    $default  reduce using rule 53 (ebarat)
+
+
+State 60
+
+   54 ebarat: ebarat_riazi .
+
+    $default  reduce using rule 54 (ebarat)
+
+
+State 61
+
+   63 ebarat_bool: zojmoratab . VA
+   64            | zojmoratab . YA
+   65            | zojmoratab . VA_ANGAH
+   66            | zojmoratab . YA_VAGARNA
+   67            | zojmoratab . KUCHIKTAR
+   68            | zojmoratab . KUCHIKTAR_MOSAVI
+   69            | zojmoratab . BOZORGTAR
+   70            | zojmoratab . BOZORGTAR_MOSAVI
+   71            | zojmoratab . MOSAVI
+   72            | zojmoratab . NA_MOSAVI
+   74 ebarat_riazi: zojmoratab . PLUS
+   75             | zojmoratab . MINUS
+   76             | zojmoratab . MULTIPLICATION
+   77             | zojmoratab . DIVISION
+   78             | zojmoratab . MOD
+
+    VA_ANGAH          shift, and go to state 95
+    YA_VAGARNA        shift, and go to state 96
+    VA                shift, and go to state 97
+    YA                shift, and go to state 98
+    MOSAVI            shift, and go to state 99
+    NA_MOSAVI         shift, and go to state 100
+    KUCHIKTAR         shift, and go to state 101
+    KUCHIKTAR_MOSAVI  shift, and go to state 102
+    BOZORGTAR         shift, and go to state 103
+    BOZORGTAR_MOSAVI  shift, and go to state 104
+    PLUS              shift, and go to state 67
+    MINUS             shift, and go to state 68
+    MULTIPLICATION    shift, and go to state 69
+    DIVISION          shift, and go to state 70
+    MOD               shift, and go to state 71
+
+
+State 62
+
+   73 ebarat_bool: ebarat . NAGHIZ
+   79 ebarat_riazi: MINUS ebarat .
+
+    NAGHIZ  shift, and go to state 94
+
+    $default  reduce using rule 79 (ebarat_riazi)
+
+
+State 63
+
+   15 dec: SHENASE BRACKET_BAZ ADADSABET BRACKET_BASTE .
+
+    $default  reduce using rule 15 (dec)
+
+
+State 64
+
+   17 range: ADADSABET TA . ADADSABET
+
+    ADADSABET  shift, and go to state 105
+
+
+State 65
+
+   14 dec: SHENASE BRACKET_BAZ range BRACKET_BASTE .
+
+    $default  reduce using rule 14 (dec)
+
+
+State 66
+
+   18 range: ebarat_riazi TA . ebarat_riazi
+
+    PARANTEZ_BAZ  shift, and go to state 28
+    MINUS         shift, and go to state 29
+
+    ebarat_riazi  go to state 106
+    zojmoratab    go to state 33
+
+
+State 67
+
+   74 ebarat_riazi: zojmoratab PLUS .
+
+    $default  reduce using rule 74 (ebarat_riazi)
+
+
+State 68
+
+   75 ebarat_riazi: zojmoratab MINUS .
+
+    $default  reduce using rule 75 (ebarat_riazi)
+
+
+State 69
+
+   76 ebarat_riazi: zojmoratab MULTIPLICATION .
+
+    $default  reduce using rule 76 (ebarat_riazi)
+
+
+State 70
+
+   77 ebarat_riazi: zojmoratab DIVISION .
+
+    $default  reduce using rule 77 (ebarat_riazi)
+
+
+State 71
+
+   78 ebarat_riazi: zojmoratab MOD .
+
+    $default  reduce using rule 78 (ebarat_riazi)
+
+
+State 72
+
+   20 meghdar_avalie: AKOLAD_BAZ list_meghdar_avalie . AKOLAD_BASTE
+
+    AKOLAD_BASTE  shift, and go to state 107
+
+
+State 73
+
+   21 list_meghdar_avalie: ebarat_sabet . COMMA list_meghdar_avalie
+   22                    | ebarat_sabet .
+
+    COMMA  shift, and go to state 108
+
+    $default  reduce using rule 22 (list_meghdar_avalie)
+
+
+State 74
+
+    3 declarations_list: declarations_list . declarations
+   26 parameters: PARANTEZ_BAZ declarations_list . PARANTEZ_BASTE
+
+    PARANTEZ_BASTE  shift, and go to state 109
+    INT             shift, and go to state 5
+    FLOAT           shift, and go to state 6
+    CHAR            shift, and go to state 7
+    BOOLEAN         shift, and go to state 8
+
+    declarations  go to state 12
+    taeen_type    go to state 11
+
+
+State 75
+
+   25 ravie: RAVIE SHENASE parameters AKOLAD_BAZ . declarations_list block AKOLAD_BASTE SEMICOLON
+
+    INT      shift, and go to state 5
+    FLOAT    shift, and go to state 6
+    CHAR     shift, and go to state 7
+    BOOLEAN  shift, and go to state 8
+
+    declarations_list  go to state 110
+    declarations       go to state 10
+    taeen_type         go to state 11
+
+
+State 76
+
+   30 statement: SHENASE ASSIGN . ebarat
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 111
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 59
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 77
+
+   36 statement: SHENASE PARANTEZ_BAZ . arguments_list PARANTEZ_BASTE
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    $default  reduce using rule 43 (arguments_list)
+
+    arguments_list   go to state 112
+    multi_arguments  go to state 113
+    ebarat           go to state 114
+    ebarat_sabet     go to state 58
+    ebarat_bool      go to state 59
+    ebarat_riazi     go to state 60
+    zojmoratab       go to state 61
+
+
+State 78
+
+   37 statement: SHENASE BRACKET_BAZ . ebarat BRACKET_BASTE ASSIGN ebarat
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 115
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 59
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 79
+
+   73 ebarat_bool: ebarat . NAGHIZ
+
+    NAGHIZ  shift, and go to state 94
+
+
+State 80
+
+   31 statement: AGAR ebarat_bool . ANGAH statement
+   32          | AGAR ebarat_bool . ANGAH statement VAGARNA statement
+   53 ebarat: ebarat_bool .
+
+    ANGAH  shift, and go to state 116
+
+    $default  reduce using rule 53 (ebarat)
+
+
+State 81
+
+   33 statement: DO statement . WHILE ebarat_bool
+
+    WHILE  shift, and go to state 117
+
+
+State 82
+
+   34 statement: FOR SHENASE . ASSIGN counter DO statement
+
+    ASSIGN  shift, and go to state 118
+
+
+State 83
+
+   35 statement: GOZINESH ebarat . onsor_mored default END
+   73 ebarat_bool: ebarat . NAGHIZ
+
+    MORED   shift, and go to state 119
+    NAGHIZ  shift, and go to state 94
+
+    onsor_mored  go to state 120
+
+
+State 84
+
+   38 statement: BAZGASHT ebarat .
+   73 ebarat_bool: ebarat . NAGHIZ
+
+    NAGHIZ  shift, and go to state 94
+
+    $default  reduce using rule 38 (statement)
+
+
+State 85
+
+   39 statement: EXIT WHEN . ebarat_bool
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 79
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 121
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 86
+
+   27 block: AKOLAD_BAZ statement_list AKOLAD_BASTE .
+
+    $default  reduce using rule 27 (block)
+
+
+State 87
+
+   29 statement_list: statement_list statement . SEMICOLON
+
+    SEMICOLON  shift, and go to state 122
+
+
+State 88
+
+   28 statement_list: statement SEMICOLON .
+
+    $default  reduce using rule 28 (statement_list)
+
+
+State 89
+
+   16 range: SHENASE TA SHENASE .
+
+    $default  reduce using rule 16 (range)
+
+
+State 90
+
+   57 ebarat: SHENASE PARANTEZ_BAZ . arguments_list PARANTEZ_BASTE
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    $default  reduce using rule 43 (arguments_list)
+
+    arguments_list   go to state 123
+    multi_arguments  go to state 113
+    ebarat           go to state 114
+    ebarat_sabet     go to state 58
+    ebarat_bool      go to state 59
+    ebarat_riazi     go to state 60
+    zojmoratab       go to state 61
+
+
+State 91
+
+   56 ebarat: SHENASE BRACKET_BAZ . ebarat BRACKET_BASTE
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 124
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 59
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 92
+
+   58 ebarat: PARANTEZ_BAZ ebarat . PARANTEZ_BASTE
+   73 ebarat_bool: ebarat . NAGHIZ
+   80 zojmoratab: PARANTEZ_BAZ ebarat . COMMA ebarat PARANTEZ_BASTE
+
+    PARANTEZ_BASTE  shift, and go to state 125
+    COMMA           shift, and go to state 93
+    NAGHIZ          shift, and go to state 94
+
+
+State 93
+
+   80 zojmoratab: PARANTEZ_BAZ ebarat COMMA . ebarat PARANTEZ_BASTE
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 126
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 59
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 94
+
+   73 ebarat_bool: ebarat NAGHIZ .
+
+    $default  reduce using rule 73 (ebarat_bool)
+
+
+State 95
+
+   65 ebarat_bool: zojmoratab VA_ANGAH .
+
+    $default  reduce using rule 65 (ebarat_bool)
+
+
+State 96
+
+   66 ebarat_bool: zojmoratab YA_VAGARNA .
+
+    $default  reduce using rule 66 (ebarat_bool)
+
+
+State 97
+
+   63 ebarat_bool: zojmoratab VA .
+
+    $default  reduce using rule 63 (ebarat_bool)
+
+
+State 98
+
+   64 ebarat_bool: zojmoratab YA .
+
+    $default  reduce using rule 64 (ebarat_bool)
+
+
+State 99
+
+   71 ebarat_bool: zojmoratab MOSAVI .
+
+    $default  reduce using rule 71 (ebarat_bool)
+
+
+State 100
+
+   72 ebarat_bool: zojmoratab NA_MOSAVI .
+
+    $default  reduce using rule 72 (ebarat_bool)
+
+
+State 101
+
+   67 ebarat_bool: zojmoratab KUCHIKTAR .
+
+    $default  reduce using rule 67 (ebarat_bool)
+
+
+State 102
+
+   68 ebarat_bool: zojmoratab KUCHIKTAR_MOSAVI .
+
+    $default  reduce using rule 68 (ebarat_bool)
+
+
+State 103
+
+   69 ebarat_bool: zojmoratab BOZORGTAR .
+
+    $default  reduce using rule 69 (ebarat_bool)
+
+
+State 104
+
+   70 ebarat_bool: zojmoratab BOZORGTAR_MOSAVI .
+
+    $default  reduce using rule 70 (ebarat_bool)
+
+
+State 105
+
+   17 range: ADADSABET TA ADADSABET .
+
+    $default  reduce using rule 17 (range)
+
+
+State 106
+
+   18 range: ebarat_riazi TA ebarat_riazi .
+
+    $default  reduce using rule 18 (range)
+
+
+State 107
+
+   20 meghdar_avalie: AKOLAD_BAZ list_meghdar_avalie AKOLAD_BASTE .
+
+    $default  reduce using rule 20 (meghdar_avalie)
+
+
+State 108
+
+   21 list_meghdar_avalie: ebarat_sabet COMMA . list_meghdar_avalie
+
+    REALCONST  shift, and go to state 36
+    ADADSABET  shift, and go to state 37
+    HARF       shift, and go to state 38
+    BOOLSABET  shift, and go to state 39
+
+    list_meghdar_avalie  go to state 127
+    ebarat_sabet         go to state 73
+
+
+State 109
+
+   26 parameters: PARANTEZ_BAZ declarations_list PARANTEZ_BASTE .
+
+    $default  reduce using rule 26 (parameters)
+
+
+State 110
+
+    3 declarations_list: declarations_list . declarations
+   25 ravie: RAVIE SHENASE parameters AKOLAD_BAZ declarations_list . block AKOLAD_BASTE SEMICOLON
+
+    AKOLAD_BAZ  shift, and go to state 25
+    INT         shift, and go to state 5
+    FLOAT       shift, and go to state 6
+    CHAR        shift, and go to state 7
+    BOOLEAN     shift, and go to state 8
+
+    declarations  go to state 12
+    taeen_type    go to state 11
+    block         go to state 128
+
+
+State 111
+
+   30 statement: SHENASE ASSIGN ebarat .
+   73 ebarat_bool: ebarat . NAGHIZ
+
+    NAGHIZ  shift, and go to state 94
+
+    $default  reduce using rule 30 (statement)
+
+
+State 112
+
+   36 statement: SHENASE PARANTEZ_BAZ arguments_list . PARANTEZ_BASTE
+
+    PARANTEZ_BASTE  shift, and go to state 129
+
+
+State 113
+
+   42 arguments_list: multi_arguments .
+   44 multi_arguments: multi_arguments . COMMA ebarat
+
+    COMMA  shift, and go to state 130
+
+    $default  reduce using rule 42 (arguments_list)
+
+
+State 114
+
+   45 multi_arguments: ebarat .
+   73 ebarat_bool: ebarat . NAGHIZ
+
+    NAGHIZ  shift, and go to state 94
+
+    $default  reduce using rule 45 (multi_arguments)
+
+
+State 115
+
+   37 statement: SHENASE BRACKET_BAZ ebarat . BRACKET_BASTE ASSIGN ebarat
+   73 ebarat_bool: ebarat . NAGHIZ
+
+    BRACKET_BASTE  shift, and go to state 131
+    NAGHIZ         shift, and go to state 94
+
+
+State 116
+
+   31 statement: AGAR ebarat_bool ANGAH . statement
+   32          | AGAR ebarat_bool ANGAH . statement VAGARNA statement
+
+    SHENASE     shift, and go to state 44
+    AKOLAD_BAZ  shift, and go to state 25
+    AGAR        shift, and go to state 45
+    DO          shift, and go to state 46
+    FOR         shift, and go to state 47
+    GOZINESH    shift, and go to state 48
+    BAZGASHT    shift, and go to state 49
+    EXIT        shift, and go to state 50
+
+    $default  reduce using rule 41 (statement)
+
+    block      go to state 51
+    statement  go to state 132
+
+
+State 117
+
+   33 statement: DO statement WHILE . ebarat_bool
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 79
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 133
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 118
+
+   34 statement: FOR SHENASE ASSIGN . counter DO statement
+
+    ADADSABET  shift, and go to state 134
+
+    counter  go to state 135
+
+
+State 119
+
+   48 onsor_mored: MORED . ADADSABET COLON block
+
+    ADADSABET  shift, and go to state 136
+
+
+State 120
+
+   35 statement: GOZINESH ebarat onsor_mored . default END
+   49 onsor_mored: onsor_mored . MORED ADADSABET COLON block
+
+    MORED    shift, and go to state 137
+    DEFAULT  shift, and go to state 138
+
+    $default  reduce using rule 51 (default)
+
+    default  go to state 139
+
+
+State 121
+
+   39 statement: EXIT WHEN ebarat_bool .
+   53 ebarat: ebarat_bool .
+
+    NAGHIZ    reduce using rule 53 (ebarat)
+    $default  reduce using rule 39 (statement)
+
+
+State 122
+
+   29 statement_list: statement_list statement SEMICOLON .
+
+    $default  reduce using rule 29 (statement_list)
+
+
+State 123
+
+   57 ebarat: SHENASE PARANTEZ_BAZ arguments_list . PARANTEZ_BASTE
+
+    PARANTEZ_BASTE  shift, and go to state 140
+
+
+State 124
+
+   56 ebarat: SHENASE BRACKET_BAZ ebarat . BRACKET_BASTE
+   73 ebarat_bool: ebarat . NAGHIZ
+
+    BRACKET_BASTE  shift, and go to state 141
+    NAGHIZ         shift, and go to state 94
+
+
+State 125
+
+   58 ebarat: PARANTEZ_BAZ ebarat PARANTEZ_BASTE .
+
+    $default  reduce using rule 58 (ebarat)
+
+
+State 126
+
+   73 ebarat_bool: ebarat . NAGHIZ
+   80 zojmoratab: PARANTEZ_BAZ ebarat COMMA ebarat . PARANTEZ_BASTE
+
+    PARANTEZ_BASTE  shift, and go to state 142
+    NAGHIZ          shift, and go to state 94
+
+
+State 127
+
+   21 list_meghdar_avalie: ebarat_sabet COMMA list_meghdar_avalie .
+
+    $default  reduce using rule 21 (list_meghdar_avalie)
+
+
+State 128
+
+   25 ravie: RAVIE SHENASE parameters AKOLAD_BAZ declarations_list block . AKOLAD_BASTE SEMICOLON
+
+    AKOLAD_BASTE  shift, and go to state 143
+
+
+State 129
+
+   36 statement: SHENASE PARANTEZ_BAZ arguments_list PARANTEZ_BASTE .
+
+    $default  reduce using rule 36 (statement)
+
+
+State 130
+
+   44 multi_arguments: multi_arguments COMMA . ebarat
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 144
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 59
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 131
+
+   37 statement: SHENASE BRACKET_BAZ ebarat BRACKET_BASTE . ASSIGN ebarat
+
+    ASSIGN  shift, and go to state 145
+
+
+State 132
+
+   31 statement: AGAR ebarat_bool ANGAH statement .
+   32          | AGAR ebarat_bool ANGAH statement . VAGARNA statement
+
+    VAGARNA  shift, and go to state 146
+
+    $default  reduce using rule 31 (statement)
+
+
+State 133
+
+   33 statement: DO statement WHILE ebarat_bool .
+   53 ebarat: ebarat_bool .
+
+    NAGHIZ    reduce using rule 53 (ebarat)
+    $default  reduce using rule 33 (statement)
+
+
+State 134
+
+   46 counter: ADADSABET . UPTO ADADSABET
+   47        | ADADSABET . DOWNTO ADADSABET
+
+    UPTO    shift, and go to state 147
+    DOWNTO  shift, and go to state 148
+
+
+State 135
+
+   34 statement: FOR SHENASE ASSIGN counter . DO statement
+
+    DO  shift, and go to state 149
+
+
+State 136
+
+   48 onsor_mored: MORED ADADSABET . COLON block
+
+    COLON  shift, and go to state 150
+
+
+State 137
+
+   49 onsor_mored: onsor_mored MORED . ADADSABET COLON block
+
+    ADADSABET  shift, and go to state 151
+
+
+State 138
+
+   50 default: DEFAULT . COLON block
+
+    COLON  shift, and go to state 152
+
+
+State 139
+
+   35 statement: GOZINESH ebarat onsor_mored default . END
+
+    END  shift, and go to state 153
+
+
+State 140
+
+   57 ebarat: SHENASE PARANTEZ_BAZ arguments_list PARANTEZ_BASTE .
+
+    $default  reduce using rule 57 (ebarat)
+
+
+State 141
+
+   56 ebarat: SHENASE BRACKET_BAZ ebarat BRACKET_BASTE .
+
+    $default  reduce using rule 56 (ebarat)
+
+
+State 142
+
+   80 zojmoratab: PARANTEZ_BAZ ebarat COMMA ebarat PARANTEZ_BASTE .
+
+    $default  reduce using rule 80 (zojmoratab)
+
+
+State 143
+
+   25 ravie: RAVIE SHENASE parameters AKOLAD_BAZ declarations_list block AKOLAD_BASTE . SEMICOLON
+
+    SEMICOLON  shift, and go to state 154
+
+
+State 144
+
+   44 multi_arguments: multi_arguments COMMA ebarat .
+   73 ebarat_bool: ebarat . NAGHIZ
+
+    NAGHIZ  shift, and go to state 94
+
+    $default  reduce using rule 44 (multi_arguments)
+
+
+State 145
+
+   37 statement: SHENASE BRACKET_BAZ ebarat BRACKET_BASTE ASSIGN . ebarat
+
+    SHENASE       shift, and go to state 55
+    PARANTEZ_BAZ  shift, and go to state 56
+    MINUS         shift, and go to state 29
+    REALCONST     shift, and go to state 36
+    ADADSABET     shift, and go to state 37
+    HARF          shift, and go to state 38
+    BOOLSABET     shift, and go to state 39
+
+    ebarat        go to state 155
+    ebarat_sabet  go to state 58
+    ebarat_bool   go to state 59
+    ebarat_riazi  go to state 60
+    zojmoratab    go to state 61
+
+
+State 146
+
+   32 statement: AGAR ebarat_bool ANGAH statement VAGARNA . statement
+
+    SHENASE     shift, and go to state 44
+    AKOLAD_BAZ  shift, and go to state 25
+    AGAR        shift, and go to state 45
+    DO          shift, and go to state 46
+    FOR         shift, and go to state 47
+    GOZINESH    shift, and go to state 48
+    BAZGASHT    shift, and go to state 49
+    EXIT        shift, and go to state 50
+
+    $default  reduce using rule 41 (statement)
+
+    block      go to state 51
+    statement  go to state 156
+
+
+State 147
+
+   46 counter: ADADSABET UPTO . ADADSABET
+
+    ADADSABET  shift, and go to state 157
+
+
+State 148
+
+   47 counter: ADADSABET DOWNTO . ADADSABET
+
+    ADADSABET  shift, and go to state 158
+
+
+State 149
+
+   34 statement: FOR SHENASE ASSIGN counter DO . statement
+
+    SHENASE     shift, and go to state 44
+    AKOLAD_BAZ  shift, and go to state 25
+    AGAR        shift, and go to state 45
+    DO          shift, and go to state 46
+    FOR         shift, and go to state 47
+    GOZINESH    shift, and go to state 48
+    BAZGASHT    shift, and go to state 49
+    EXIT        shift, and go to state 50
+
+    $default  reduce using rule 41 (statement)
+
+    block      go to state 51
+    statement  go to state 159
+
+
+State 150
+
+   48 onsor_mored: MORED ADADSABET COLON . block
+
+    AKOLAD_BAZ  shift, and go to state 25
+
+    block  go to state 160
+
+
+State 151
+
+   49 onsor_mored: onsor_mored MORED ADADSABET . COLON block
+
+    COLON  shift, and go to state 161
+
+
+State 152
+
+   50 default: DEFAULT COLON . block
+
+    AKOLAD_BAZ  shift, and go to state 25
+
+    block  go to state 162
+
+
+State 153
+
+   35 statement: GOZINESH ebarat onsor_mored default END .
+
+    $default  reduce using rule 35 (statement)
+
+
+State 154
+
+   25 ravie: RAVIE SHENASE parameters AKOLAD_BAZ declarations_list block AKOLAD_BASTE SEMICOLON .
+
+    $default  reduce using rule 25 (ravie)
+
+
+State 155
+
+   37 statement: SHENASE BRACKET_BAZ ebarat BRACKET_BASTE ASSIGN ebarat .
+   73 ebarat_bool: ebarat . NAGHIZ
+
+    NAGHIZ  shift, and go to state 94
+
+    $default  reduce using rule 37 (statement)
+
+
+State 156
+
+   32 statement: AGAR ebarat_bool ANGAH statement VAGARNA statement .
+
+    $default  reduce using rule 32 (statement)
+
+
+State 157
+
+   46 counter: ADADSABET UPTO ADADSABET .
+
+    $default  reduce using rule 46 (counter)
+
+
+State 158
+
+   47 counter: ADADSABET DOWNTO ADADSABET .
+
+    $default  reduce using rule 47 (counter)
+
+
+State 159
+
+   34 statement: FOR SHENASE ASSIGN counter DO statement .
+
+    $default  reduce using rule 34 (statement)
+
+
+State 160
+
+   48 onsor_mored: MORED ADADSABET COLON block .
+
+    $default  reduce using rule 48 (onsor_mored)
+
+
+State 161
+
+   49 onsor_mored: onsor_mored MORED ADADSABET COLON . block
+
+    AKOLAD_BAZ  shift, and go to state 25
+
+    block  go to state 163
+
+
+State 162
+
+   50 default: DEFAULT COLON block .
+
+    $default  reduce using rule 50 (default)
+
+
+State 163
+
+   49 onsor_mored: onsor_mored MORED ADADSABET COLON block .
+
+    $default  reduce using rule 49 (onsor_mored)

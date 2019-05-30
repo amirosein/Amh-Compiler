@@ -1,0 +1,18 @@
+1 . 
+dar file myParser.output dar state 3 yek shift reduce conflict dashtim ke ba hazf kardan epsilon az rule 3 bartaraf shod . 
+
+2.
+ reduce reduce conflict in state 113 :
+we have no reduce with rule argument_list -> ebarat so we omit this rule from grammer (in the myParser.output) so the reduce reduce conflict will be solved .
+
+If there is a reduce-reduce conflict, the parser always reduces by the rule that was given first in the rules section of the yacc input.
+
+Again, the conflict is reported in the yacc output so that users can ensure that the choice is correct.
+
+Precedence is not consulted in reduce-reduce conflicts. yacc always reduces by the earliest grammar rule, regardless of precedence.
+
+The rules are simple to state, but they can have complex repercussions if the grammar is nontrivial. If the grammar is sufficiently complicated, these simple rules for resolving conflicts may not be capable of handling all the necessary intricacies in the way you want. Users should pay close attention to all conflicts noted in the parsing table report produced by yacc and should ensure that the default actions taken by the parser are the desired ones.
+
+3.
+	| AGAR ebarat_bool ANGAH statement VAGARNA statement { System.out.println("Rule 16 : AGAR ebarat_bool ANGAH statement VAGARNA statement");}; 
+  ra az rule 16 hazv mikonim chon useless ast .

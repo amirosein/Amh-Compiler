@@ -1,0 +1,36 @@
+G1:
+
+S->aS
+S->bA
+S->cB
+A->d
+A->h
+B->r
+B->g
+
+Terminals: a,b,c,d,h,r,g
+Non-Terminals: S, A, B
+
+G2:
+
+S-> E
+E->T;
+E->T+E
+T->int
+T->(E)
+
+Terminals: ; , (, ), int, +
+Non-Terminals: S, E, T,
+
+
+G3:
+
+S->A
+S->B
+A->bA
+A->d
+B->aB
+B->c
+
+Terminals: a, b, d, c
+Non-Terminals: S, A, B
